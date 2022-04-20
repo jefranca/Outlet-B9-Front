@@ -1,16 +1,17 @@
 import styled from "styled-components"
+import { BsFillCartFill } from 'react-icons/bs';
 
 export default function Header(){
     return (
       <HeadBox>
-          <div>
+          <div className="login">
               Login
           </div>
-        <div>
+        <div className="title">
             Outlet B9
         </div>
-        <div>
-            CI
+        <div className="cart">
+            <BsFillCartFill/>
         </div>
       </HeadBox>
     )
@@ -25,4 +26,16 @@ const HeadBox = styled.div`
     padding: 20px;
     box-sizing: border-box;
     background-color: #FFFFFF;
+    
+    & .login{
+        font-size: 20px;
+    }
+
+    & .title{
+        font-size: 66px;
+        font-family: 'Whisper', cursive;
+    }
+    & .cart{
+        font-size: 20px;
+    }
 `;
