@@ -41,7 +41,7 @@ export default function PostItem() {
     
             <div className="inputs">
               <input type="text" 
-              placeholder="produto" 
+              placeholder="Produto" 
               value={product}
             onChange={(e) => {
               setProduct(e.target.value);
@@ -59,13 +59,13 @@ export default function PostItem() {
               setImg(e.target.value);}}
               required />
               <input type="text"
-               placeholder="valor"
+               placeholder="Valor"
                value={value}
             onChange={(e) => {
               setValue(e.target.value);}}
                 required />
               <input type="text" 
-              placeholder="estoque" 
+              placeholder="Estoque" 
               value={amount}
             onChange={(e) => {
               setAmount(e.target.value);}}

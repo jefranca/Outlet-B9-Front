@@ -10,7 +10,6 @@ export default function Home() {
   useEffect(() => {
     getItems().then((res) => {
       setItems(res.data);
-      console.log(res.data);
     });
   }, []);
 
