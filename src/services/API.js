@@ -6,16 +6,26 @@ const BASE_URL = REACT_APP_BASE_URL
   ? REACT_APP_BASE_URL
   : "http://localhost:4000/";
 
+function config(token) {
+  return {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+}
+
 function getItems() {
   return axios.get(`${BASE_URL}`);
 }
 
-  function postSignIn(body){
-    return axios.post(`${BASE_URL}sign-in`, body)
+function postSignIn(body) {
+  return axios.post(`${BASE_URL}sign-in`, body);
 }
 
-function postSignUp(body){
-  return axios.post(`${BASE_URL}sign-up`, body)
+function postSignUp(body) {
+  return axios.post(`${BASE_URL}sign-up`, body);
 }
 
-export { getItems, postSignIn, postSignUp };
+function deleteSession(token) {
+  return axios.delete(`${BASE_URL}logout`, config(token));
+}
+
+export { getItems, postSignIn, postSignUp, deleteSession };

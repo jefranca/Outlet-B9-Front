@@ -7,7 +7,6 @@ import { saveToLocalStorage } from '../utils/localStorage';
 import StyledDiv from '../styles/shared/StyledDiv';
 import StyledButton from '../styles/shared/StyledButton';
 import StyledText from '../styles/shared/StyledText';
-import Header from '../components/Header';
 
 export default function SignIn() {
   const navigate = useNavigate();
