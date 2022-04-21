@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SIgnUp";
 import Done from "./pages/Done";
 import ResetCss from "./styles/shared/ResetCss";
+import PostItem from "./pages/PostItem";
 
 render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ render(
         <Route path="sign-up" element={<SignUp />} />
         <Route path="payment" element={<Payment />} />
         <Route path="done" element={<Done />} />
+        <Route path="admin/post" element={<PostItem />} />
       </Route>
     </Routes>
   </BrowserRouter>,
