@@ -28,4 +28,12 @@ function deleteSession(token) {
   return axios.delete(`${BASE_URL}logout`, config(token));
 }
 
-export { getItems, postSignIn, postSignUp, deleteSession };
+function sellItem(id) {
+  return axios.put(`${BASE_URL}item/sell/${id}`);
+}
+
+function postItem(body){
+  return axios.post(`${BASE_URL}item/`, body)
+}
+
+export { getItems, postSignIn, postSignUp, deleteSession, sellItem, postItem };
