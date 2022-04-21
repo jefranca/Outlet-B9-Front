@@ -8,6 +8,7 @@ export default function ItemCard({ item }) {
       <div>
         <p>{item.product}</p>
         <p>{item.size}</p>
+        <p>R${item.value}</p>
         <button>Comprar</button>
       </div>
     </Card>

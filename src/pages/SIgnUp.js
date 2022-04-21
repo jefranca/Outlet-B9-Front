@@ -1,46 +1,50 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useContext, useEffect, useState } from 'react';
-import { postSignIn } from '../services/API';
-import UserContext from '../context/UserContext';
-import { saveToLocalStorage } from '../utils/localStorage';
 import StyledDiv from '../styles/shared/StyledDiv';
-import StyledButton from '../styles/shared/StyledButton';
 import StyledText from '../styles/shared/StyledText';
-import Header from '../components/Header';
+import StyledButton from '../styles/shared/StyledButton';
+import { postSignUp } from '../services/API';
+import UserContext from '../context/UserContext';
 
-export default function SignIn() {
+export default function SignUp() {
   const navigate = useNavigate();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, setLogin } = useContext(UserContext);
+  const [confirmedPassword, setConfirmedPassword] = useState('');
+  const { login } = useContext(UserContext);
 
   useEffect(() => {
     if (login) navigate('/');
   }, [login, navigate]);
 
-  function signIn(e) {
+  function signUp(e) {
     e.preventDefault();
-    const body = { email, password };
-    postSignIn(body)
+    if (password !== confirmedPassword) return alert('Confirmação de Senha Incorreta');
+    const body = { name, email, password };
+    postSignUp(body)
       .then((res) => {
-        alert('Logado com Sucesso');
-        saveToLocalStorage(res.data);
-        setLogin(res.data);
-        navigate('/plans');
+        alert('Conta criada com Sucesso');
+        navigate('/sign-in');
       })
       .catch((error) => {
-        if (error.response.status === 403) alert('Senha Incorreta');
-        else if (error.response.status === 404) alert('E-mail não cadastrado');
+        if (error.response.status === 401) alert('E-mail já cadastrado');
         else alert('Erro Desconhecido');
       });
   }
   return (
     <>
-    <StyledTitle> <p>Bem vindo ao Outlet B9</p></StyledTitle>
-
-      <StyledForm onSubmit={signIn}>
+      <StyledTitle> Bem vindo ao Outlet B9</StyledTitle>
+      <StyledForm onSubmit={signUp}>
         <div className="inputs">
+          <input
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => { setName(e.target.value); }}
+            required
+          />
           <input
             type="email"
             placeholder="Email"
@@ -55,10 +59,17 @@ export default function SignIn() {
             onChange={(e) => { setPassword(e.target.value); }}
             required
           />
+          <input
+            type="password"
+            placeholder="Confirmar senha"
+            value={confirmedPassword}
+            onChange={(e) => { setConfirmedPassword(e.target.value); }}
+            required
+          />
         </div>
         <StyledDiv>
-          <StyledButton type="submit">Login</StyledButton>
-          <StyledText onClick={() => navigate('/sign-up')}>Criar conta</StyledText>
+          <StyledButton type="submit">Cadastrar</StyledButton>
+          <StyledText onClick={() => navigate('/sign-in')}>Fazer login</StyledText>
         </StyledDiv>
       </StyledForm>
     </>
@@ -74,11 +85,11 @@ const StyledTitle = styled.div`
     height: 100px;
 `;
 
+
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     height: 60vh;
-    margin-top: 100px;
     justify-content: space-between;
     align-items: center;
     & .inputs{

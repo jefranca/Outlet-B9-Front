@@ -1,13 +1,16 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
 import { BsFillCartFill } from 'react-icons/bs';
 
 export default function Header(){
+    const navigate=useNavigate();
+
     return (
       <HeadBox>
           <div className="login">
               Login
           </div>
-        <div className="title">
+        <div className="title" onClick={()=>{navigate("/")}}>
             Outlet B9
         </div>
         <div className="cart">
