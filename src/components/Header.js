@@ -8,23 +8,22 @@ import { deleteSession } from "../services/API";
 export default function Header() {
   const navigate = useNavigate();
   const { login, setLogin } = useContext(UserContext);
-  console.log(login);
 
-  function logout(){
+  function logout() {
     deleteSession(login.token)
-    .then((res)=>{
-        alert("Deslogado com Sucesso")
-        localStorage.clear()
-    })
-    .catch((err)=>{
-        console.error(err)
-    })
+      .then((res) => {
+        alert("Deslogado com Sucesso");
+        localStorage.clear();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (
     <HeadBox>
       {login ? (
-        <div className="login" >
+        <div className="login">
           <p>{login.user.name}</p>
           <p onClick={logout}>Deslogar</p>
         </div>

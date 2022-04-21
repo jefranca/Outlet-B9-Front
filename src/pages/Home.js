@@ -1,30 +1,26 @@
 import Header from "../components/Header";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import {getItems} from "../services/API"
+import { getItems } from "../services/API";
 import ItemCard from "../components/ItemCard";
 
 export default function Home() {
-  const [items, setItems]= useState();
-  
-  useEffect(()=>{
-    getItems()
-    .then((res)=>{
-      setItems(res.data)
-      console.log(res.data)
-    })
-  },[])
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    getItems().then((res) => {
+      setItems(res.data);
+      console.log(res.data);
+    });
+  }, []);
 
   return (
     <div>
       <Header />
       <ItemsBox>
         {items ? (
-          items.map ((item)=>(
-          <ItemCard item={item}/>
-        ))
-
-        ):(
+          items.map((item) => <ItemCard item={item} />)
+        ) : (
           <>Carregando...</>
         )}
       </ItemsBox>

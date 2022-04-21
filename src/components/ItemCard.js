@@ -16,7 +16,7 @@ export default function ItemCard({ item }) {
         <p>R${item.value}</p>
         <button
           onClick={() => {
-            setItem(item)
+            setItem(item);
             navigate("/payment");
           }}
         >

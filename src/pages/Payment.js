@@ -11,32 +11,33 @@ export default function Payment() {
   const navigate = useNavigate();
   const { item } = useContext(UserContext);
 
-  function finishOrder(e){
-      e.preventDefault();
-      sellItem(item.id)
-      .then((res=>{
-        navigate("/done")
-      }))
-      .catch((err)=>{
-          console.error(err)
+  function finishOrder(e) {
+    e.preventDefault();
+    sellItem(item.id)
+      .then((res) => {
+        navigate("/done");
       })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (
     <>
-    
       <StyledForm onSubmit={finishOrder}>
-          {item ? (<Card>
-      <img src={item.img} />
-      <div>
-        <p>{item.product}</p>
-        <p>{item.size}</p>
-        <p>R${item.value}</p>
-      </div>
-    </Card>)
-          :
-          (<>Carregando...</>)}
-      
+        {item ? (
+          <Card>
+            <img src={item.img} />
+            <div>
+              <p>{item.product}</p>
+              <p>{item.size}</p>
+              <p>R${item.value}</p>
+            </div>
+          </Card>
+        ) : (
+          <>Carregando...</>
+        )}
+
         <div className="selectBox">
           <p className="select">Forma de Pagamento</p>
           <select className="select">
@@ -101,27 +102,26 @@ const StyledForm = styled.form`
 `;
 
 const Card = styled.div`
-width: 400px;
-height: 200px;
-background-color: #ffffff;
-margin: 15px;
-display: flex;
-justify-content: space-between;
-border-radius: 10px;
-
-& img {
-  width: 200px;
+  width: 400px;
   height: 200px;
-  border-radius: 10px 0px 0px 10px;
-}
-
-& div {
+  background-color: #ffffff;
+  margin: 15px;
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: space-around;
-  align-items: center;
-}
-`;
+  justify-content: space-between;
+  border-radius: 10px;
 
+  & img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+`;
