@@ -10,5 +10,9 @@ function getItems() {
   return axios.get(`${BASE_URL}`);
 }
 
+  function postSignIn(body){
+    return axios.post(`${BASE_URL}sign-in`, body)
+}
 
-export { getItems };
+
+export { getItems, postSignIn };
