@@ -26,6 +26,9 @@ const HeadBox = styled.div`
     padding: 20px;
     box-sizing: border-box;
     background-color: #FFFFFF;
+    position: fixed;
+    left: 0;
+    top:0;
     
     & .login{
         font-size: 20px;
